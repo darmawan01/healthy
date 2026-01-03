@@ -1,0 +1,7 @@
+{
+  "name": "Verdant Bites - Healthy Food Platform",
+  "description": "A modern, glassmorphic healthy food platform featuring an AI-powered nutritionist assistant, vibrant green aesthetics, and interactive product catalogs.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
