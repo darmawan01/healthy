@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
-import AINutritionist from './components/AINutritionist';
+const AINutritionist = React.lazy(() => import('./components/AINutritionist'));
 import { PRODUCTS } from './constants';
 import { Leaf, Award, ShieldCheck, HeartPulse } from 'lucide-react';
 import { LanguageProvider, useLanguage } from './LanguageContext';
@@ -63,7 +63,9 @@ const AppContent: React.FC = () => {
           </div>
         </section>
 
-        <AINutritionist />
+        <React.Suspense fallback={<div className="py-24 text-center">Loading AI assistant…</div>}>
+          <AINutritionist />
+        </React.Suspense>
 
         {/* Newsletter / CTA */}
         <section className="py-24 px-4">

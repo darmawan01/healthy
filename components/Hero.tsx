@@ -40,6 +40,10 @@ const Hero: React.FC = () => {
                 <img 
                   key={i} 
                   src={`https://picsum.photos/seed/user${i}/100/100`} 
+                  loading="lazy"
+                  decoding="async"
+                  width="40"
+                  height="40"
                   className="w-10 h-10 rounded-full border-2 border-white shadow-sm" 
                   alt="User" 
                 />
@@ -60,6 +64,10 @@ const Hero: React.FC = () => {
           <div className="relative animate-float">
             <img 
               src="https://picsum.photos/seed/healthybowl/800/800" 
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
               className="rounded-[2rem] shadow-2xl border-8 border-white object-cover aspect-square max-w-full"
               alt="Healthy Food"
             />

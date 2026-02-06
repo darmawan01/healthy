@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Plus, Info } from 'lucide-react';
 import { Product } from '../types';
-import NutritionRadar from './NutritionRadar';
+const NutritionRadar = React.lazy(() => import('./NutritionRadar'));
 import { useLanguage } from '../LanguageContext';
 
 interface Props {
@@ -25,10 +25,14 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <div className="group relative glass rounded-[2.5rem] p-4 transition-all hover:shadow-2xl hover:-translate-y-2 overflow-hidden">
-      <div className="relative h-64 mb-6 rounded-[2rem] overflow-hidden">
+        <div className="relative h-64 mb-6 rounded-[2rem] overflow-hidden">
         <img 
           src={product.image} 
           alt={localizedData.name} 
+          loading="lazy"
+          decoding="async"
+          width="640"
+          height="480"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute top-4 left-4 glass px-3 py-1 rounded-full text-xs font-bold text-emerald-900">
@@ -75,7 +79,9 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             <h4 className="font-bold text-lg">Nutrient Profile</h4>
             <button onClick={() => setShowStats(false)} className="text-slate-400 hover:text-slate-900 font-bold">Close</button>
           </div>
-          <NutritionRadar data={radarData} />
+          <Suspense fallback={<div className="py-8 text-center">Loading chart…</div>}>
+            <NutritionRadar data={radarData} />
+          </Suspense>
           <div className="mt-4 grid grid-cols-2 gap-4">
             <div className="p-3 bg-emerald-50 rounded-2xl">
               <div className="text-xs text-emerald-600 font-bold">Proteins</div>

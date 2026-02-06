@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
-import { getNutritionAdvice } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { useLanguage } from '../LanguageContext';
 
@@ -33,6 +32,7 @@ const AINutritionist: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setIsLoading(true);
 
+    const { getNutritionAdvice } = await import('../services/geminiService');
     const response = await getNutritionAdvice(userMsg, language);
     setMessages(prev => [...prev, { role: 'model', text: response }]);
     setIsLoading(false);

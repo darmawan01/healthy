@@ -14,6 +14,10 @@ export default defineConfig(({ mode }) => {
         outDir: 'dist',
         sourcemap: false,
         minify: 'terser',
+        target: 'es2022',
+        terserOptions: {
+          compress: { drop_console: true }
+        },
         chunkSizeWarningLimit: 1000,
         rollupOptions: {
           output: {
